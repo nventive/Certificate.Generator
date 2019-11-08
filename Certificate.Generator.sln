@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Certificate.Generator", "Certificate.Generator\Certificate.Generator.csproj", "{6614F65B-E33F-467E-9960-96E06192C0DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Markdown", "Markdown", "{19C0A90C-F7C6-4827-8312-E15046C0944B}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{DA3BDDBF-6852-4210-95E6-FEB424629A18}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6614F65B-E33F-467E-9960-96E06192C0DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6614F65B-E33F-467E-9960-96E06192C0DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6614F65B-E33F-467E-9960-96E06192C0DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6614F65B-E33F-467E-9960-96E06192C0DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {802D85CD-6DD6-4E43-A734-49E6C6ED79ED}
+	EndGlobalSection
+EndGlobal

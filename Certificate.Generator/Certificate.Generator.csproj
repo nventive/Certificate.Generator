@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp2.2</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>applecertgen</ToolCommandName>
+	</PropertyGroup>
+
+	<!-- NuGet metadata -->
+	<PropertyGroup>
+		<PackageId>nventive.certificate.generator</PackageId>
+		<Title>Certificate Generator</Title>
+		<Description>A netcore application to help with certificate generation</Description>
+		<Authors>nventive</Authors>
+		<Owners>nventive</Owners>
+		<Copyright>nventive</Copyright>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageIcon>icon.png</PackageIcon>
+		<!--<PackageProjectUrl>TBD</PackageProjectUrl>-->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ReadLine" Version="2.0.1" />
+		<PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.19405.1" />
+		<PackageReference Include="System.Security.Cryptography.OpenSsl" Version="4.6.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\icon.png"
+			  Pack="True"
+			  PackagePath="" />
+	</ItemGroup>
+</Project>
