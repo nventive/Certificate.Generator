@@ -1,9 +1,5 @@
 pull_request_rules:
 - name: automatic merge
-  conditions:
-  # Only pull-requests sent to the develop branch
-  - base=develop
-
   # Note: mergify cannot break branch protection rules
   actions:
   merge:
