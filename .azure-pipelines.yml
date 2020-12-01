@@ -35,13 +35,21 @@ stages:
       displayName: Use GitVersion
       inputs:
         updateAssemblyInfo: 'False'
+
+    - task: NuGetToolInstaller@1
+      inputs:
+        checkLatest: true
     
+    - task: NuGetCommand@2
+      inputs:
+        command: restore
+        restoreSolution: Certificate.Generator.sln
+
     - task: MSBuild@1
       inputs:
         solution: Certificate.Generator.sln
         configuration: Release
         platform: Any CPU
-        restoreNugetPackages: true
         msbuildArguments: /p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
     
     - publish: $(Build.ArtifactStagingDirectory)
