@@ -34,7 +34,8 @@ stages:
     - task: gitversion/execute@0
       displayName: Use GitVersion
       inputs:
-        updateAssemblyInfo: 'False'
+        useConfigFile: true
+        configFilePath: 'build/gitversion.yml'
 
     - task: NuGetToolInstaller@1
       inputs:
@@ -50,7 +51,7 @@ stages:
         solution: Certificate.Generator.sln
         configuration: Release
         platform: Any CPU
-        msbuildArguments: /p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
+        msbuildArguments: /p:PackageOutputPath=$(Build.ArtifactStagingDirectory) /p:PackageVersion=$(SemVer)
     
     - publish: $(Build.ArtifactStagingDirectory)
       artifact: Packages
