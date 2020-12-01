@@ -1,7 +1,2 @@
 assembly-versioning-scheme: MajorMinorPatch
 mode: ContinuousDeployment
-branches:
-  main:
-    regex: main
-    tag:
-    increment: none
