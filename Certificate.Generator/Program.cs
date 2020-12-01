@@ -13,13 +13,14 @@ namespace CertificateGenerator
 		/// <summary>
 		/// Helper tool to create Apple certificates.
 		/// This program creates a certificate signing request to be used in the Apple Developer console to obtain a certificate. 
-		/// A P12 is then generated using this certificate.
+		/// A P12 is then generated using this certificate. 
+		/// Supported certificate types: Push notifications, signing certificate
 		/// </summary>
 		/// <param name="emailAddress">A relevant email address to use in the request (ex: the mail of the owner of the account)</param>
 		/// <param name="commonName">The name to use in the request; usually the name of the Apple Developer organization</param>
 		/// <param name="countryCode">The country code of the account</param>
-		/// <param name="requestFilePath">Optional: the path where to place the .csr file</param>
-		/// <param name="p12FilePath">Optional: the path where to place the .p12 file</param>
+		/// <param name="requestFilePath">Optional: the path where to place the .csr file; defaults to a temporary folder</param>
+		/// <param name="p12FilePath">Optional: the path where to place the .p12 file; defaults to a temporary folder</param>
 		/// <returns></returns>
 		public static int Main(
 			string emailAddress,
