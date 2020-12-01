@@ -20,8 +20,10 @@ Options:
   --common-name <common-name>                The name to use in the request; usually the name of the Apple Developer
                                              organization
   --country-code <country-code>              The country code of the account
-  --request-file-path <request-file-path>    Optional: the path where to place the .csr file
-  --p12-file-path <p12-file-path>            Optional: the path where to place the .p12 file
+  --request-file-path <request-file-path>    Optional: the path where to place the .csr file; defaults to a temporary
+                                             folder
+  --p12-file-path <p12-file-path>            Optional: the path where to place the .p12 file; defaults to a temporary
+                                             folder
   --version                                  Display version information
 ```
 
