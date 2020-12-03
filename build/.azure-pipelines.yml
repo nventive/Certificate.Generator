@@ -57,6 +57,7 @@ stages:
       artifact: Packages
 
 - stage: Release
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
   jobs:
   - job: NuGet
     steps:
