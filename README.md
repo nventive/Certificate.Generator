@@ -4,10 +4,15 @@ Create Apple certificate from anywhere, not just macOS.
 
 This tool allows the creation of certificate signing requests compatible with Apple Developer console. Once the certificate has been created, the tool also creates a `.p12` file for safekeeping.
 
+[![Nuget](https://img.shields.io/nuget/v/nventive.certificate.generator)](https://www.nuget.org/packages/nventive.certificate.generator)
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ## Getting Started
 This program creates a certificate signing request to be used in the Apple Developer console to obtain a certificate. A P12 is then generated using this certificate. Supported certificate types are push notifications and signing certificate.
+
+To install it, run: `dotnet tool install nventive.certificate.generator`
+You may have to [specify the version of the package](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools#install-a-specific-tool-version)
 
 From `--help`:
 ```
