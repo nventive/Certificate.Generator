@@ -9,8 +9,8 @@ pull_request_rules:
     strict: smart
 
 - name: automatic merge for allcontributors pull requests
-    conditions:
-    - author=allcontributors[bot]
-    actions:
-    merge:
-        method: merge
+  conditions:
+  - author=allcontributors[bot]
+  actions:
+  merge:
+    method: merge
