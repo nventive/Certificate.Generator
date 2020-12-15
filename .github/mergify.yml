@@ -1,16 +1,10 @@
 pull_request_rules:
 - name: automatic merge
+  conditions: []
   # Note: mergify cannot break branch protection rules
   actions:
-  merge:
-    method: merge
-    # https://doc.mergify.io/strict-workflow.html
-    # https://doc.mergify.io/actions.html#label
-    strict: smart
-
-- name: automatic merge for allcontributors pull requests
-  conditions:
-  - author=allcontributors[bot]
-  actions:
-  merge:
-    method: merge
+    merge:
+      method: merge
+      # https://doc.mergify.io/strict-workflow.html
+      # https://doc.mergify.io/actions.html#label
+      strict: smart
