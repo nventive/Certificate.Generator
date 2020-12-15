@@ -71,5 +71,6 @@ stages:
     - task: NuGetCommand@2
       inputs:
         command: push
+        nuGetFeedType: external
         publishFeedCredentials: 'NuGet.org - nventive'
         packagesToPush: $(Pipeline.Workspace)/Packages/*.nupkg
