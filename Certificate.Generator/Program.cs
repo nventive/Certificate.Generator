@@ -45,8 +45,8 @@ namespace CertificateGenerator
 			File.WriteAllText(requestFilePath, requestContent);
 
 			Console.WriteLine($"Created {requestFilePath} to use to create a certificate.");
-			
-			var certificateFilePath = ReadLine.Read("Location of the .cer file:");
+
+			var certificateFilePath = ReadCertificatePath();
 
 			//Load the certificate and include the private key
 			var certificate = new X509Certificate2(X509Certificate.CreateFromCertFile(certificateFilePath)).CopyWithPrivateKey(key);
@@ -63,9 +63,24 @@ namespace CertificateGenerator
 
 			return 0;
 		}
-		
+
 		private static CertificateRequest CreateCertificateRequest(RSA key, string emailAddress, string commonName, string countryCode)
 		{
+			if (emailAddress is null)
+			{
+				emailAddress = ReadLine.Read("Email address:");
+			}
+
+			if (commonName is null)
+			{
+				commonName = ReadLine.Read("Common name:");
+			}
+
+			if (countryCode is null)
+			{
+				countryCode = ReadLine.Read("Country code:");
+			}
+
 			var request = new CertificateRequest($"CN={commonName}, C={countryCode}", key, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
 
 			//The email address needs to be added to the request as an alternative name
@@ -76,6 +91,30 @@ namespace CertificateGenerator
 			request.CertificateExtensions.Add(alternativeNameBuilder.Build());
 
 			return request;
+		}
+
+		private static string ReadCertificatePath()
+		{
+			while (true)
+			{
+				try
+				{
+					var certificateFilePath = ReadLine.Read("Location of the .cer file:");
+
+					if (File.Exists(certificateFilePath))
+					{
+						return certificateFilePath;
+					}
+					else
+					{
+						Console.WriteLine("File does not exist.");
+					}
+				}
+				catch (Exception)
+				{
+					Console.WriteLine("An error occured while parsing the given path.");
+				}
+			}
 		}
 
 		private static string CreateTemporaryDirectory() => Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), $"CertificateGenerator.{Guid.NewGuid()}")).FullName;
