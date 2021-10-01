@@ -23,6 +23,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="ReadLine" Version="2.0.1" />
+		<PackageReference Include="Sharprompt" Version="2.3.4" />
 		<PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.20574.7" />
 		<PackageReference Include="System.Security.Cryptography.OpenSsl" Version="4.6.0" />
 	</ItemGroup>

@@ -3,6 +3,8 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using CertificateGenerator.Extensions;
+using Sharprompt;
+using TextCopy;
 
 namespace CertificateGenerator
 {
@@ -31,8 +33,8 @@ namespace CertificateGenerator
 		)
 		{
 			//Use temporary files in nothing is specified
-			requestFilePath = requestFilePath ?? GetTemporaryFilePath("csr");
-			p12FilePath = p12FilePath ?? GetTemporaryFilePath("p12");
+			requestFilePath ??= GetTemporaryFilePath("csr");
+			p12FilePath ??= GetTemporaryFilePath("p12");
 
 			// Generate a new key
 			var key = RSA.Create(2048);
@@ -44,22 +46,24 @@ namespace CertificateGenerator
 			//Save the CSR
 			File.WriteAllText(requestFilePath, requestContent);
 
-			Console.WriteLine($"Created {requestFilePath} to use to create a certificate.");
+			ClipboardService.SetText(requestFilePath);
+			Console.WriteLine($"Created {requestFilePath} to use to create a certificate. The path has been copied to the clipboard");
 
-			var certificateFilePath = ReadCertificatePath();
+			//var certificateFilePath = ReadCertificatePath();
 
 			//Load the certificate and include the private key
-			var certificate = new X509Certificate2(X509Certificate.CreateFromCertFile(certificateFilePath)).CopyWithPrivateKey(key);
+			//var certificate = new X509Certificate2(X509Certificate.CreateFromCertFile(certificateFilePath)).CopyWithPrivateKey(key);
 
-			var password = ReadLine.ReadPassword("Enter the password to use for the p12:");
+			var password = Prompt.Password("Enter the password to use for the p12:", '*', new[] { Validators.Required() });
 
 			//Export to a p12
-			var content = certificate.Export(X509ContentType.Pkcs12, password);
+			//var content = certificate.Export(X509ContentType.Pkcs12, password);
 
 			//Save the p12
-			File.WriteAllBytes(p12FilePath, content);
+			//File.WriteAllBytes(p12FilePath, content);
 
-			Console.WriteLine($"Successfully exported certificate under {p12FilePath}");
+			ClipboardService.SetText(p12FilePath);
+			Console.WriteLine($"Successfully exported certificate under {p12FilePath}. The path has been copied to the clipboard");
 
 			return 0;
 		}
@@ -68,17 +72,17 @@ namespace CertificateGenerator
 		{
 			if (emailAddress is null)
 			{
-				emailAddress = ReadLine.Read("Email address:");
+				emailAddress = Prompt.Input<string>("Email address:");
 			}
 
 			if (commonName is null)
 			{
-				commonName = ReadLine.Read("Common name:");
+				commonName = Prompt.Input<string>("Common name:");
 			}
 
 			if (countryCode is null)
 			{
-				countryCode = ReadLine.Read("Country code:");
+				countryCode = Prompt.Input<string>("Country code:");
 			}
 
 			var request = new CertificateRequest($"CN={commonName}, C={countryCode}", key, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
@@ -99,7 +103,7 @@ namespace CertificateGenerator
 			{
 				try
 				{
-					var certificateFilePath = ReadLine.Read("Location of the .cer file:");
+					var certificateFilePath = Prompt.Input<string>("Location of the .cer file:");
 
 					if (File.Exists(certificateFilePath))
 					{
