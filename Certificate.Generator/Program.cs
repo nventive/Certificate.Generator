@@ -49,18 +49,18 @@ namespace CertificateGenerator
 			ClipboardService.SetText(requestFilePath);
 			Console.WriteLine($"Created {requestFilePath} to use to create a certificate. The path has been copied to the clipboard");
 
-			//var certificateFilePath = ReadCertificatePath();
+			var certificateFilePath = ReadCertificatePath();
 
 			//Load the certificate and include the private key
-			//var certificate = new X509Certificate2(X509Certificate.CreateFromCertFile(certificateFilePath)).CopyWithPrivateKey(key);
+			var certificate = new X509Certificate2(X509Certificate.CreateFromCertFile(certificateFilePath)).CopyWithPrivateKey(key);
 
 			var password = Prompt.Password("Enter the password to use for the p12:", '*', new[] { Validators.Required() });
 
 			//Export to a p12
-			//var content = certificate.Export(X509ContentType.Pkcs12, password);
+			var content = certificate.Export(X509ContentType.Pkcs12, password);
 
 			//Save the p12
-			//File.WriteAllBytes(p12FilePath, content);
+			File.WriteAllBytes(p12FilePath, content);
 
 			ClipboardService.SetText(p12FilePath);
 			Console.WriteLine($"Successfully exported certificate under {p12FilePath}. The path has been copied to the clipboard");
